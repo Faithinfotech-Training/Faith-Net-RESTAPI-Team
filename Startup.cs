@@ -29,6 +29,8 @@ namespace ClinicManagementSystemv2022
             services.AddControllers();
         }
 
+        // changes by Sajitha
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
