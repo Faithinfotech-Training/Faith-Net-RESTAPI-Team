@@ -3,23 +3,24 @@ using System.Collections.Generic;
 
 namespace ClinicManagementSystemv2022.Models
 {
-    public partial class Employee
+    public partial class Patient
     {
-        public Employee()
+        public Patient()
         {
             Appointment = new HashSet<Appointment>();
+            Bill = new HashSet<Bill>();
             Prescription = new HashSet<Prescription>();
         }
 
-        public int EmployeeId { get; set; }
-        public string EmployeeName { get; set; }
-        public string Department { get; set; }
+        public int PatientId { get; set; }
+        public string PatientName { get; set; }
+        public int Age { get; set; }
+        public string Gender { get; set; }
+        public string Address { get; set; }
         public string PhoneNumber { get; set; }
-        public string RoleName { get; set; }
-        public string UserName { get; set; }
-        public string PassWord { get; set; }
 
         public virtual ICollection<Appointment> Appointment { get; set; }
+        public virtual ICollection<Bill> Bill { get; set; }
         public virtual ICollection<Prescription> Prescription { get; set; }
     }
 }
