@@ -15,6 +15,7 @@ namespace ClinicManagementSystemv2022
 {
     public class Startup
     {
+        //Changed by Leema
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
