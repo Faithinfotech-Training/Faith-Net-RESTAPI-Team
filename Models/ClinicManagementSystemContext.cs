@@ -30,7 +30,7 @@ namespace ClinicManagementSystemv2022.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-67C0LP2; Initial Catalog=ClinicManagementSystem; Integrated security=True");
+                optionsBuilder.UseSqlServer("Data Source=LAPTOP-CE5THMMS\\SQLEXPRESS; Initial Catalog=ClinicManagementSystem; Integrated security=True");
             }
         }
 
@@ -45,12 +45,12 @@ namespace ClinicManagementSystemv2022.Models
                 entity.HasOne(d => d.Doctor)
                     .WithMany(p => p.Appointment)
                     .HasForeignKey(d => d.DoctorId)
-                    .HasConstraintName("FK__Appointme__Docto__24927208");
+                    .HasConstraintName("FK__Appointme__Docto__3A81B327");
 
                 entity.HasOne(d => d.Patient)
                     .WithMany(p => p.Appointment)
                     .HasForeignKey(d => d.PatientId)
-                    .HasConstraintName("FK__Appointme__Patie__239E4DCF");
+                    .HasConstraintName("FK__Appointme__Patie__398D8EEE");
             });
 
             modelBuilder.Entity<Bill>(entity =>
@@ -62,7 +62,7 @@ namespace ClinicManagementSystemv2022.Models
                 entity.HasOne(d => d.Patient)
                     .WithMany(p => p.Bill)
                     .HasForeignKey(d => d.PatientId)
-                    .HasConstraintName("FK__Bill__PatientId__276EDEB3");
+                    .HasConstraintName("FK__Bill__PatientId__3D5E1FD2");
             });
 
             modelBuilder.Entity<Employee>(entity =>
@@ -75,8 +75,7 @@ namespace ClinicManagementSystemv2022.Models
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PassWord)
-                    .IsRequired()
+                entity.Property(e => e.Password)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
@@ -85,12 +84,10 @@ namespace ClinicManagementSystemv2022.Models
                     .IsUnicode(false);
 
                 entity.Property(e => e.RoleName)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
                 entity.Property(e => e.UserName)
-                    .IsRequired()
                     .HasMaxLength(20)
                     .IsUnicode(false);
             });
@@ -98,23 +95,25 @@ namespace ClinicManagementSystemv2022.Models
             modelBuilder.Entity<LabAdvice>(entity =>
             {
                 entity.HasKey(e => e.LabTestId)
-                    .HasName("PK__LabAdvic__64D33925E6702D0B");
+                    .HasName("PK__LabAdvic__64D339255A6ACFD2");
 
                 entity.HasOne(d => d.Prescription)
                     .WithMany(p => p.LabAdvice)
                     .HasForeignKey(d => d.PrescriptionId)
-                    .HasConstraintName("FK__LabAdvice__Presc__20C1E124");
+                    .HasConstraintName("FK__LabAdvice__Presc__36B12243");
 
                 entity.HasOne(d => d.TestCategory)
                     .WithMany(p => p.LabAdvice)
                     .HasForeignKey(d => d.TestCategoryId)
-                    .HasConstraintName("FK__LabAdvice__TestC__1FCDBCEB");
+                    .HasConstraintName("FK__LabAdvice__TestC__35BCFE0A");
             });
 
             modelBuilder.Entity<LabTestCategory>(entity =>
             {
                 entity.HasKey(e => e.TestCategoryId)
-                    .HasName("PK__LabTestC__2CE372FD236E0EAE");
+                    .HasName("PK__LabTestC__2CE372FD1B3229A5");
+
+                entity.Property(e => e.TestCategoryId).ValueGeneratedNever();
 
                 entity.Property(e => e.CategoryType)
                     .IsRequired()
@@ -145,10 +144,10 @@ namespace ClinicManagementSystemv2022.Models
 
                 entity.Property(e => e.Description)
                     .IsRequired()
-                    .HasMaxLength(200)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.MedicineFee).HasColumnType("decimal(10, 2)");
+                entity.Property(e => e.MedicineCharge).HasColumnType("decimal(10, 2)");
 
                 entity.Property(e => e.MedicineName)
                     .IsRequired()
@@ -159,7 +158,7 @@ namespace ClinicManagementSystemv2022.Models
             modelBuilder.Entity<MedicinePrescription>(entity =>
             {
                 entity.HasKey(e => e.PrescriptionMedId)
-                    .HasName("PK__Medicine__2B34041BFA988A7F");
+                    .HasName("PK__Medicine__2B34041B2F428639");
 
                 entity.Property(e => e.Dosage)
                     .IsRequired()
@@ -169,12 +168,12 @@ namespace ClinicManagementSystemv2022.Models
                 entity.HasOne(d => d.Medicine)
                     .WithMany(p => p.MedicinePrescription)
                     .HasForeignKey(d => d.MedicineId)
-                    .HasConstraintName("FK__MedicineP__Medic__1B0907CE");
+                    .HasConstraintName("FK__MedicineP__Medic__30F848ED");
 
                 entity.HasOne(d => d.Prescription)
                     .WithMany(p => p.MedicinePrescription)
                     .HasForeignKey(d => d.PrescriptionId)
-                    .HasConstraintName("FK__MedicineP__Presc__1A14E395");
+                    .HasConstraintName("FK__MedicineP__Presc__300424B4");
             });
 
             modelBuilder.Entity<Patient>(entity =>
@@ -206,12 +205,12 @@ namespace ClinicManagementSystemv2022.Models
                 entity.HasOne(d => d.Doctor)
                     .WithMany(p => p.Prescription)
                     .HasForeignKey(d => d.DoctorId)
-                    .HasConstraintName("FK__Prescript__Docto__164452B1");
+                    .HasConstraintName("FK__Prescript__Docto__2C3393D0");
 
                 entity.HasOne(d => d.Patient)
                     .WithMany(p => p.Prescription)
                     .HasForeignKey(d => d.PatientId)
-                    .HasConstraintName("FK__Prescript__Patie__173876EA");
+                    .HasConstraintName("FK__Prescript__Patie__2D27B809");
             });
 
             OnModelCreatingPartial(modelBuilder);

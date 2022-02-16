@@ -1,7 +1,11 @@
+using ClinicManagementSystemv2022.Models;
+using ClinicManagementSystemv2022.Repository;
+using CMSV2022.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +31,13 @@ namespace ClinicManagementSystemv2022
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            // ConnectionString for Database, inject as dependency
+ 
+             services.AddDbContext<ClinicManagementSystemContext>(db =>
+             db.UseSqlServer(Configuration.GetConnectionString("ClinicManagementSystemDBConnection")));
+
+             //add dependency injection of EmployeeReository
+             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
         }
 
         // changes by Sajitha
