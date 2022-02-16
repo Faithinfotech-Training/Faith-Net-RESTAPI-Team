@@ -38,6 +38,8 @@ namespace ClinicManagementSystemv2022
 
              //add dependency injection of EmployeeReository
              services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+             services.AddScoped<IPharmacistRepository, PharmacistRepository>();
+             services.AddScoped<IReceptionistRepository, ReceptionistRepository>();
         }
 
         // changes by Sajitha

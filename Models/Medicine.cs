@@ -15,7 +15,7 @@ namespace ClinicManagementSystemv2022.Models
         public string Brand { get; set; }
         public string Description { get; set; }
         public DateTime DateOfExpiry { get; set; }
-        public decimal MedicineCharge { get; set; }
+        public decimal MedicineFee { get; set; }
 
         public virtual ICollection<MedicinePrescription> MedicinePrescription { get; set; }
     }
